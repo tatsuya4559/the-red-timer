@@ -20,10 +20,11 @@
   }
 
   let audio;
+  let beepEnabled = true;
   afterUpdate(() => {
     if (remain <= 0) {
       stop();
-      audio.play();
+      beepEnabled && audio.play();
     }
   });
 
@@ -32,10 +33,9 @@
   });
 </script>
 
-  <audio
+<audio
   src="http://soundbible.com/mp3/service-bell_daniel_simion.mp3"
-  bind:this={audio}
-  ></audio>
+  bind:this={audio} />
 
 <div class="mx-8 mt-4">
   <div class="my-4">
@@ -43,18 +43,17 @@
       残り
       <input
         class="border border-black border-solid w-12 rounded"
-        type=number
-        min=0
-        max=60
+        type="number"
+        min="0"
+        max="60"
         bind:value={remain} />
       分
     </label>
-    <input
-      type=range
-      min=0
-      max=60
-      bind:value={remain}
-    />
+    <input type="range" min="0" max="60" bind:value={remain} />
+    <label class="ml-4 text-xl">
+      <input type="checkbox" bind:checked={beepEnabled} />
+      アラーム音{beepEnabled ? 'あり' : 'なし'}
+    </label>
   </div>
   {#if timerId}
     <button
@@ -73,8 +72,8 @@
   {/if}
 
   <button
-    class="px-4 py-2 bg-red-300 active:bg-red-500 font-bold rounded text-gray-800
-    shadow disabled:opacity-50 disabled:cursor-not-allowed"
+    class="px-4 py-2 bg-red-300 active:bg-red-500 font-bold rounded
+    text-gray-800 shadow disabled:opacity-50 disabled:cursor-not-allowed"
     disabled={timerId}
     on:click={reset}>
     リセット
