@@ -1,0 +1,24 @@
+{
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.5",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-svelte": "^4.0.6",
+    "svelte": "^3.24.0",
+    "tailwindcss": "^1.5.2"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.3",
+    "serve": "^11.3.2"
+  },
+    "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true
+  }
+}
