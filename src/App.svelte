@@ -1,6 +1,6 @@
 <script>
   import { afterUpdate, onDestroy } from 'svelte';
-  import Clock from './chart/Clock.svelte';
+  import Clock from './Clock.svelte';
 
   let remain = 20;
 
