@@ -13,7 +13,7 @@
     ],
   };
 
-  const options = {
+  $: options = {
     // グラフの太さ（中央部分を何％切り取るか）
     // cutoutPercentage: 40,
     // 凡例を表示しない
@@ -22,7 +22,7 @@
     title: {
       display: true,
       fontSize: 32,
-      text: '残り時間',
+      text: `あと ${remain} 分`,
     },
     // マウスオーバー時に情報を表示しない
     tooltips: { enabled: false },
@@ -40,10 +40,9 @@
 
   afterUpdate(() => {
     chart.data = data;
+    chart.options = options;
     chart.update(0);
   });
-
-
 </script>
 
 <canvas bind:this={ctx} style="position: relative; height:700; width:700" />
