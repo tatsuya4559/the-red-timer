@@ -30,7 +30,7 @@
   });
 </script>
 
-<div class="m-8">
+<div class="mx-8 mt-4">
   <div class="my-4">
     <label class="text-xl">
       残り
@@ -72,5 +72,5 @@
     on:click={reset}>
     リセット
   </button>
+  <Clock {remain} />
 </div>
-<Clock {remain} />
