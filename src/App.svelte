@@ -52,7 +52,7 @@
     <input type="range" min="0" max="60" bind:value={remain} />
     <label class="ml-4 text-xl">
       <input type="checkbox" bind:checked={beepEnabled} />
-      アラーム音{beepEnabled ? 'あり' : 'なし'}
+      アラーム音あり
     </label>
   </div>
   {#if timerId}
