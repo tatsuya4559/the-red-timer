@@ -19,9 +19,11 @@
     remain = 0;
   }
 
+  let audio;
   afterUpdate(() => {
     if (remain <= 0) {
       stop();
+      audio.play();
     }
   });
 
@@ -29,6 +31,11 @@
     stop();
   });
 </script>
+
+  <audio
+  src="http://soundbible.com/mp3/service-bell_daniel_simion.mp3"
+  bind:this={audio}
+  ></audio>
 
 <div class="mx-8 mt-4">
   <div class="my-4">
