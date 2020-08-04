@@ -12,6 +12,7 @@
 
   function stop() {
     clearInterval(timerId);
+    timerId = undefined;
   }
 
   function reset() {
@@ -30,29 +31,44 @@
 </script>
 
 <div class="m-8">
-  <label class="text-xl">
-    残り
+  <div class="my-4">
+    <label class="text-xl">
+      残り
+      <input
+        class="border border-black border-solid w-12 rounded"
+        type=number
+        min=0
+        max=60
+        bind:value={remain} />
+      分
+    </label>
     <input
-      class="border border-black border-solid w-12 rounded"
-      type="number"
-      bind:value={remain} />
-    分
-  </label>
+      type=range
+      min=0
+      max=60
+      bind:value={remain}
+    />
+  </div>
+  {#if timerId}
+    <button
+      class="px-4 py-2 bg-red-300 active:bg-red-500 font-bold rounded
+      text-gray-800 shadow"
+      on:click={stop}>
+      停止
+    </button>
+  {:else}
+    <button
+      class="px-4 py-2 bg-red-300 active:bg-red-500 font-bold rounded
+      text-gray-800 shadow"
+      on:click={start}>
+      開始
+    </button>
+  {/if}
+
   <button
-    class="px-4 py-2 bg-red-300 hover:bg-red-500 font-bold rounded text-gray-800
-    shadow"
-    on:click={start}>
-    開始
-  </button>
-  <button
-    class="px-4 py-2 bg-red-300 hover:bg-red-500 font-bold rounded text-gray-800
-    shadow"
-    on:click={stop}>
-    停止
-  </button>
-  <button
-    class="px-4 py-2 bg-red-300 hover:bg-red-500 font-bold rounded text-gray-800
-    shadow"
+    class="px-4 py-2 bg-red-300 active:bg-red-500 font-bold rounded text-gray-800
+    shadow disabled:opacity-50 disabled:cursor-not-allowed"
+    disabled={timerId}
     on:click={reset}>
     リセット
   </button>
