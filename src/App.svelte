@@ -6,7 +6,8 @@
 
   let timerId;
   function start() {
-    timerId = setInterval(() => (remain -= 1), 1000);
+    // 60秒ごとに刻む
+    timerId = setInterval(() => (remain -= 1), 1000 * 60);
   }
 
   function stop() {
