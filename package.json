@@ -15,7 +15,7 @@
     "chart.js": "^2.9.3",
     "serve": "^11.3.2"
   },
-    "prettier": {
+  "prettier": {
     "trailingComma": "all",
     "tabWidth": 2,
     "semi": true,
