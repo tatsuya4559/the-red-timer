@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy, afterUpdate } from 'svelte';
+  import { onMount, afterUpdate } from 'svelte';
   import Chart from 'chart.js';
 
   export let remain = 0;
