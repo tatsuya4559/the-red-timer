@@ -2,12 +2,28 @@
   import { afterUpdate, onDestroy } from 'svelte';
   import Clock from './Clock.svelte';
 
-  let remain = 20;
+  class RemainTime {
+    constructor(s) {
+      this._sec = s;
+    }
+    get sec() {
+      return this._sec;
+    }
+    set sec(s) {
+      this._sec = s;
+    }
+    get min() {
+      return Math.ceil(this._sec / 60)
+    }
+    set min(m) {
+      this._sec = m * 60;
+    }
+  }
+  let remain = new RemainTime(60 * 20);
 
   let timerId;
   function start() {
-    // 60秒ごとに刻む
-    timerId = setInterval(() => (remain -= 1), 1000 * 60);
+    timerId = setInterval(() => (remain.sec -= 1), 1000);
   }
 
   function stop() {
@@ -16,13 +32,13 @@
   }
 
   function reset() {
-    remain = 0;
+    remain.sec = 0;
   }
 
   let audio;
   let beepEnabled = true;
   afterUpdate(() => {
-    if (remain <= 0) {
+    if (remain.sec <= 0) {
       stop();
       beepEnabled && audio.play();
     }
@@ -46,10 +62,10 @@
         type="number"
         min="0"
         max="60"
-        bind:value={remain} />
+        bind:value={remain.min} />
       分
     </label>
-    <input type="range" min="0" max="60" bind:value={remain} />
+    <input type="range" min="0" max="60" bind:value={remain.min} />
     <label class="ml-4 text-xl">
       <input type="checkbox" bind:checked={beepEnabled} />
       アラーム音あり
@@ -78,5 +94,5 @@
     on:click={reset}>
     リセット
   </button>
-  <Clock {remain} />
+  <Clock remain={remain.sec} />
 </div>

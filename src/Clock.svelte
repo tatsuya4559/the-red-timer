@@ -7,7 +7,7 @@
     labels: ['残り時間', '経過時間'],
     datasets: [
       {
-        data: [remain, 60 - remain],
+        data: [remain, 3600 - remain],
         backgroundColor: ['#FF0000', '#e0e0e0'],
       },
     ],
@@ -22,7 +22,7 @@
     title: {
       display: true,
       fontSize: 32,
-      text: `あと ${remain} 分`,
+      text: `あと ${Math.ceil(remain / 60)} 分`,
     },
     // マウスオーバー時に情報を表示しない
     tooltips: { enabled: false },
